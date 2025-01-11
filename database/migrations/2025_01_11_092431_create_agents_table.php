@@ -11,8 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('agencies', function (Blueprint $table) {
+        Schema::create('agents', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->foreignId('owner_id')->constrained('users')->cascadeOnDelete(); // Foreign key referencing the users table
             $table->timestamps();
         });
     }
@@ -22,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('agencies');
+        Schema::dropIfExists('agents');
     }
 };
