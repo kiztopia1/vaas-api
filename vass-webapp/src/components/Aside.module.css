@@ -1,0 +1,29 @@
+.aside {
+  position: fixed;
+  height: 100vh;
+}
+.imgContainer {
+  margin-top: 10px;
+  padding-left: 25px;
+  justify-content: center;
+}
+.ul {
+  list-style: none;
+}
+.li {
+  margin: 10px 25px;
+  padding: 7px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.li:hover {
+  background-color: rgba(255, 255, 255, 0.212);
+}
+.bottom {
+  position: absolute;
+  bottom: 10px;
+  left: 25px;
+}
+.bottom a {
+  font-size: 0.8rem;
+}

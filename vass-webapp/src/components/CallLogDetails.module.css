@@ -1,0 +1,60 @@
+.callLogDetails {
+  position: fixed;
+  top: 0;
+  right: -30vw; /* Start hidden off-screen */
+  width: 30vw;
+  height: 100vh;
+  background-color: #1e1e1e;
+  color: white;
+  padding: 20px;
+  border-radius: 10px 0 0 10px;
+  box-shadow: -3px 0 10px rgba(0, 0, 0, 0.2);
+  transition: right 0.5s ease;
+}
+
+.callLogDetails.slideIn {
+  right: 0; /* Slide in from the right */
+}
+
+.tabs {
+  display: flex;
+  gap: 10px;
+  margin: 20px 0;
+}
+
+.tabs button {
+  padding: 10px 15px;
+  background-color: #333;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+}
+
+.tabs .active {
+  background-color: #444;
+}
+
+.tabContent {
+  margin-top: 20px;
+}
+
+.recordingStatus {
+  margin: 10px 0;
+}
+
+.logsSection,
+.transcriptsSection,
+.analysisSection,
+.messagesSection,
+.costSection {
+  margin-top: 20px;
+}
+
+.logsSection p,
+.transcriptsSection pre,
+.analysisSection p,
+.messagesSection p,
+.costSection div {
+  margin-bottom: 10px;
+}

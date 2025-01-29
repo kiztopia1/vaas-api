@@ -1,0 +1,157 @@
+.container {
+  width: 100%;
+  padding: 20px 0;
+  text-align: left;
+}
+
+.header {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+.tableHeader {
+  background-color: #f5f5f5;
+}
+
+.th,
+.td {
+  padding: 20px 15px;
+
+  text-align: left;
+}
+
+.th {
+  background-color: #333;
+  color: white;
+  font-weight: bold;
+}
+
+.tr:nth-child(even) {
+  background-color: #7575750a;
+}
+
+/* .tr:hover {
+  background-color: #f1f1f13b;
+} */
+
+.noData {
+  text-align: center;
+  padding: 10px;
+  color: #999;
+}
+
+.error {
+  color: red;
+  font-size: 14px;
+}
+
+.loading {
+  font-size: 16px;
+  font-weight: bold;
+  color: #333;
+  text-align: center;
+  margin: 20px 0;
+}
+
+.button {
+  padding: 8px 12px;
+  border: none;
+  margin-right: 7px;
+  color: white;
+  cursor: pointer;
+  border-radius: 5px;
+  background-color: var(--primary-btn);
+  transition: background-color 0.3s ease;
+}
+
+.button:hover {
+  background-color: #0056b3; /* Darken the hover background */
+}
+
+.addButton {
+  background-color: #28a745; /* Default green for the add button */
+}
+
+.addButton:hover {
+  background-color: #218838; /* Darken green on hover */
+}
+
+.deleteButton {
+  background-color: var(--delete-btn-color);
+  padding: 8px 12px;
+  border: none;
+  margin-right: 7px;
+  color: white;
+  cursor: pointer;
+  border-radius: 5px;
+
+  transition: background-color 0.3s ease; /* Red for the delete button */
+}
+
+.deleteButton:hover {
+  background-color: #c82333; /* Darken red on hover */
+}
+
+.closeButton {
+  background-color: #6c757d; /* Gray button for close */
+}
+
+.closeButton:hover {
+  background-color: #5a6268; /* Darker gray on hover */
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--primary-color-dark-opacity);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  backdrop-filter: blur(5px); /* Apply blur to background */
+}
+
+.modalContainer {
+  background-color: rgb(15, 15, 15);
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 500px;
+  width: 100%;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+}
+.modalContainer label {
+  margin-bottom: 5px;
+  display: inline-block;
+  width: 100px;
+}
+.modalContainer .custom {
+  width: 100%;
+  margin: 10px 0;
+}
+.modalContainer h2 {
+  margin-bottom: 20px;
+}
+
+.modalContainer form input,
+.modalContainer form select {
+  margin-bottom: 10px;
+  padding: 8px;
+  font-size: 16px;
+}
+
+.modalContainer button {
+  padding: 8px;
+  font-size: 16px;
+  margin-top: 10px;
+}

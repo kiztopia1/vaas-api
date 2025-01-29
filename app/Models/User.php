@@ -4,11 +4,15 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasManyThrough;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Support\Facades\Hash;
 
 class User extends Authenticatable
 {
-    use HasFactory;
+    use HasApiTokens, HasFactory;
 
     protected $fillable = [
         'name',
@@ -28,6 +32,30 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    // Relationship: An agency has many clients (via the agency_user table)
+    public function agencyClients(): HasManyThrough
+    {
+        return $this->hasManyThrough(
+            User::class,       // The related model (Client)
+            AgencyUser::class, // The intermediate model (agency_user table)
+            'agency_id',       // Foreign key on agency_user linking to agencies
+            'id',              // Local key on users table (the client ID)
+            'id',              // Local key on users table (agency ID)
+            'user_id'          // Foreign key on agency_user linking to clients
+        );
+    }
+    // Relationship: A user belongs to multiple agencies
+    public function agencies(): BelongsToMany
+    {
+        return $this->belongsToMany(User::class, 'agency_user', 'user_id', 'agency_id');
+    }
+
+    // Relationship: An agency manages many users
+    public function managedUsers(): HasMany
+    {
+        return $this->hasMany(AgencyUser::class, 'agency_id');
     }
 
     // Get all users by role

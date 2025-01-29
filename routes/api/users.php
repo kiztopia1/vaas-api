@@ -2,15 +2,20 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
-
 use App\Http\Controllers\UserController;
 
-Route::prefix('/users')->group(function () {
-    Route::get('/', [UserController::class, 'index'])->defaults('role', 'user'); // Get all users
-    Route::get('/{id}', [UserController::class, 'show'])->defaults('role', 'user'); // Get a specific user
-    Route::post('/', [UserController::class, 'store'])->defaults('role', 'user'); // Create a new user
-    Route::put('/{id}', [UserController::class, 'update'])->defaults('role', 'user'); // Update a user
-    Route::delete('/{id}', [UserController::class, 'destroy'])->defaults('role', 'user'); // Delete a user
-});
+Route::middleware('auth:sanctum')->group(function () {
+    Route::get('/user', function (Request $request) {
+        return $request->user();
+    });
+    Route::get('/clients', [UserController::class, 'getAgencyClients']); // Get all clients under an agency
 
+    Route::prefix('/users')->middleware('auth:sanctum')->group(function () {
+        // Route::get('/', [UserController::class, 'index']); 
+        Route::get('/{id}', [UserController::class, 'show']); // Get a specific user by role & ID
+        Route::post('/', [UserController::class, 'store']); // Create a new user (Only agencies can create clients)
+        Route::put('/{role}/{id}', [UserController::class, 'update']); // Update a user
+        Route::delete('/{id}', [UserController::class, 'destroy']); // Delete a user
+
+    });
+});

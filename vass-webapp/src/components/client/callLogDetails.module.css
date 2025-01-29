@@ -1,0 +1,88 @@
+.callLogDetails {
+  position: fixed;
+  top: 0;
+  right: -35vw; /* Start hidden off-screen */
+  width: 35vw;
+  height: 100vh;
+  background-color: #1e1e1e;
+  color: white;
+  padding: 20px;
+  border-radius: 10px 0 0 10px;
+  box-shadow: -3px 0 10px rgba(0, 0, 0, 0.2);
+  transition: right 0.5s ease;
+}
+.cont {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: red;
+}
+
+.callLogDetails.slideIn {
+  right: 0; /* Slide in from the right */
+}
+
+.tabs {
+  display: flex;
+  gap: 10px;
+  margin: 20px 0;
+}
+
+.tabs button {
+  padding: 10px 15px;
+  background-color: #333;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+}
+
+.tabs .active {
+  background-color: #444;
+}
+
+.tabContent {
+  margin-top: 20px;
+}
+
+.recordingStatus {
+  margin: 10px 0;
+}
+
+.logsSection,
+.transcriptsSection,
+.analysisSection,
+.messagesSection,
+.costSection {
+  margin-top: 20px;
+}
+
+.logsSection p,
+.transcriptsSection pre,
+.analysisSection p,
+.messagesSection p,
+.costSection div {
+  margin-bottom: 10px;
+}
+
+.closeButton {
+  position: absolute;
+  padding: 10px;
+  top: 15px;
+  right: 10px;
+  background-color: var(--delete-btn-color); /* Gray button for close */
+  width: 100px;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.log {
+  height: 250px;
+  overflow-y: scroll;
+}
+.log p {
+  font-size: 0.8rem;
+}

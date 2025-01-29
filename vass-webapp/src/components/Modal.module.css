@@ -1,0 +1,53 @@
+.modalBackground {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(99, 69, 99, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  backdrop-filter: blur(5px); /* Apply blur to background */
+}
+
+.modalContainer {
+  background-color: rgb(15, 15, 15);
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 500px;
+  width: 100%;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+}
+.modalContainer label {
+  display: inline-block;
+  margin-bottom: 5px;
+
+  width: 100px;
+}
+.modalContainer .custom {
+  width: 100%;
+  margin: 10px 0;
+}
+.modalContainer h2 {
+  margin-bottom: 20px;
+}
+
+.modalContainer form {
+  display: flex;
+  flex-direction: column;
+}
+
+.modalContainer form input,
+.modalContainer form select {
+  margin-bottom: 10px;
+  padding: 8px;
+  font-size: 16px;
+}
+
+.modalContainer button {
+  padding: 8px;
+  font-size: 16px;
+  margin-top: 10px;
+}

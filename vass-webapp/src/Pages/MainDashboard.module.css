@@ -1,0 +1,28 @@
+.dashboard {
+  display: flex;
+}
+.aside {
+  width: 15%;
+}
+.main {
+  width: 85%;
+
+  background-color: rgba(49, 40, 49, 0.705);
+  border-radius: 20px;
+  margin: 2.5vh 30px;
+}
+.content {
+  padding: 10px 24px;
+}
+.main h1 {
+  padding: 5px 24px;
+  background-color: rgba(119, 72, 119, 0.411);
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.main svg {
+  height: 20px;
+}

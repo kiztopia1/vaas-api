@@ -1,0 +1,50 @@
+/* Base styles for the buttons */
+.main-header {
+  margin-bottom: 0;
+}
+.main-detail {
+  margin-top: 5px;
+  color: var(--light-blue);
+}
+
+.home-toggler-button {
+  background-color: #e2e0ff93;
+  color: var(--deep-blue);
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+/* Styles for the active button */
+.home-toggler-button.active-btn {
+  background-color: var(--deep-blue) !important;
+  color: #ffffff;
+}
+.home-toggler-button:hover {
+  background-color: #e2e0ffea;
+
+  transition: 1s;
+}
+
+/* Optional: Add hover effect for buttons */
+/* .home-toggler-button.home-toggler-button.active-btn:hover {
+  background-color: var(--deep-blue);
+  color: #ffffff;
+} */
+
+.select-propery-warning {
+  background: #edeae8;
+  border-radius: 10px;
+  padding: 3px;
+  margin-top: 20px;
+  display: block;
+  border: 1px solid #9c72448c;
+}
+.select-propery-warning p {
+  color: #9c7244;
+  /* padding: 3px; */
+  padding-left: 15px;
+}

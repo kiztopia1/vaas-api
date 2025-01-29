@@ -1,0 +1,63 @@
+.call-logs {
+  /* background-color: #1e1e1e; */
+  color: white;
+  padding: 20px;
+  border-radius: 10px;
+  border-top-left-radius: 0;
+  border-top-left-radius: 0;
+}
+.call-logs h2 {
+  margin-bottom: 20px;
+}
+
+.search-filter {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.search-input {
+  width: 300px;
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid #444;
+  background-color: #2c2c2c;
+  color: white;
+}
+
+.filter-button {
+  background-color: #333;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+}
+
+.call-logs-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.call-logs-table th,
+.call-logs-table td {
+  padding: 10px;
+  border-bottom: 1px solid #444;
+  text-align: left;
+}
+
+.call-logs-table th {
+  background-color: #333;
+}
+
+.call-logs-table tr:hover {
+  background-color: #444;
+}
+
+.call-logs-table a {
+  color: #6bbfef;
+  text-decoration: none;
+}
+
+.call-logs-table a:hover {
+  text-decoration: underline;
+}

@@ -1,0 +1,48 @@
+.agentDashboard {
+  width: 100%;
+  margin-bottom: 10px;
+  background-color: var(--primary-color-light);
+  padding: 4px 7px;
+  border-radius: 10px;
+}
+
+.flex {
+  display: flex;
+  flex-grow: 1;
+  justify-content: space-between;
+}
+
+.box {
+  background-color: rgba(74, 77, 85, 0.349);
+  margin: 10px 0;
+  padding: 10px;
+  width: 23%;
+  border-radius: 10px;
+}
+
+.box p {
+  font-size: 2.5rem;
+  font-weight: bolder;
+}
+
+.moreDetails {
+  cursor: pointer;
+}
+
+.moreDetails h4 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 3px 10px;
+  /* background: #1e1e1e; */
+}
+
+.moreDetails h4:hover {
+  background-color: var(--primary-color); /* Example color change on hover */
+  border-radius: 3px;
+}
+
+.callLogs {
+  transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
+}

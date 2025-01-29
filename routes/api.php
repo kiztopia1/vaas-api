@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Hash;
 require __DIR__ . '/api/users.php';
 require __DIR__ . '/api/admins.php';
 require __DIR__ . '/api/clients.php';
+require __DIR__ . '/api/agents.php';
+require __DIR__ . '/api/auth.php';
 
 // // Define API routes for the Users table
 // Route::prefix('/users')->group(function () {

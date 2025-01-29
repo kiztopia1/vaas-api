@@ -2,18 +2,27 @@
 
 namespace App\Models;
 
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Agent extends Model
 {
+    use HasFactory;
     /**
      * The attributes that are mass assignable.
      *
      * @var array<string>
      */
     protected $fillable = [
+        'private_key',
+        'public_key',
+        'agent_id',
         'name',
-        'owner_id',
+        'admin_id', // Foreign key to the User model
+        'fee_type',
+        'custom_fee',
+        'fee',
     ];
 
     /**
@@ -23,7 +32,7 @@ class Agent extends Model
      */
     public function owner()
     {
-        return $this->belongsTo(User::class, 'owner_id');
+        return $this->belongsTo(User::class, 'admin_id');
     }
 
     /**

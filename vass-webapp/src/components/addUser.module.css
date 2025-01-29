@@ -1,0 +1,81 @@
+.addButton {
+  background-color: #636363;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 16px;
+  margin-bottom: 20px;
+  width: 300px;
+}
+
+.addButton:hover {
+  background-color: #647e66;
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--primary-color-dark-opacity);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  backdrop-filter: blur(5px); /* Apply blur to background */
+}
+
+.modalContainer {
+  background-color: rgb(15, 15, 15);
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 500px;
+  width: 100%;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+}
+.modalContainer label {
+  margin-bottom: 5px;
+  display: inline-block;
+  width: 100px;
+}
+.modalContainer .custom {
+  width: 100%;
+  margin: 10px 0;
+}
+.modalContainer h2 {
+  margin-bottom: 20px;
+}
+
+.modalContainer form input,
+.modalContainer form select {
+  margin-bottom: 10px;
+  padding: 8px;
+  font-size: 16px;
+}
+
+.addUser {
+  padding: 8px 12px;
+  border: none;
+  margin-right: 7px;
+  color: white;
+  cursor: pointer;
+  border-radius: 5px;
+  background-color: var(--primary-btn);
+  transition: background-color 0.3s ease;
+}
+.closeButton {
+  padding: 8px 12px;
+  border: none;
+  margin-right: 7px;
+  color: white;
+  cursor: pointer;
+  border-radius: 5px;
+  background-color: var(--delete-btn-color);
+  transition: background-color 0.3s ease;
+}
+.warning {
+  color: rgb(209, 121, 6);
+}

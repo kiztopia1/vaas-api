@@ -1,0 +1,60 @@
+.callLogs {
+  color: white;
+  padding: 20px 0;
+  border-radius: 10px;
+}
+
+.callLogs h2 {
+  margin-bottom: 20px;
+}
+
+.searchFilter {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.searchInput {
+  width: 300px;
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid #444;
+  background-color: #2c2c2c;
+  color: white;
+}
+
+.filterButton {
+  background-color: #333;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+}
+
+.callLogsTable {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.callLogsTable th,
+.callLogsTable td {
+  padding: 10px;
+  border-bottom: 1px solid #444;
+  text-align: left;
+}
+
+.callLogsTable th {
+  background-color: #333;
+}
+
+.callLogsTable tr:hover {
+  background-color: #444;
+}
+
+.tableRow {
+  cursor: pointer;
+}
+
+.callLogDetailsContainer {
+  margin-top: 20px;
+}

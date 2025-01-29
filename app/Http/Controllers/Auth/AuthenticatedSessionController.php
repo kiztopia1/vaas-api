@@ -3,36 +3,57 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Auth\LoginRequest;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\ValidationException;
 
 class AuthenticatedSessionController extends Controller
 {
     /**
-     * Handle an incoming authentication request.
+     * Handle an incoming authentication request (Login).
      */
-    public function store(LoginRequest $request): Response
+    public function store(Request $request)
     {
-        $request->authenticate();
+        // Validate the request data
+        $request->validate([
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
 
-        $request->session()->regenerate();
+        // Find the user by email
+        $user = \App\Models\User::where('email', $request->email)->first();
 
-        return response()->noContent();
+        // Check if the user exists and the password is correct
+        if (!$user || !Hash::check($request->password, $user->password)) {
+            throw ValidationException::withMessages([
+                'email' => ['The provided credentials are incorrect.'],
+            ]);
+        }
+
+        // Generate a Sanctum token
+        $token = $user->createToken('API Token')->plainTextToken;
+
+        // Return response with token and user data
+        return response()->json([
+            'message' => 'Login successful',
+            'user' => $user,
+            'token' => $token,
+        ], 200);
     }
 
     /**
-     * Destroy an authenticated session.
+     * Destroy an authenticated session (Logout).
      */
-    public function destroy(Request $request): Response
+    public function destroy(Request $request)
     {
-        Auth::guard('web')->logout();
+        // Revoke all tokens for the authenticated user
+        if ($request->user()) {
+            $request->user()->tokens()->delete();
+        }
 
-        $request->session()->invalidate();
-
-        $request->session()->regenerateToken();
-
-        return response()->noContent();
+        return response()->json([
+            'message' => 'Logout successful',
+        ], 200);
     }
 }
