@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class User extends Authenticatable
 {
@@ -56,6 +57,11 @@ class User extends Authenticatable
     public function managedUsers(): HasMany
     {
         return $this->hasMany(AgencyUser::class, 'agency_id');
+    }
+
+    public function agent(): HasOne
+    {
+        return $this->hasOne(Agent::class, 'client_id', 'id');
     }
 
     // Get all users by role

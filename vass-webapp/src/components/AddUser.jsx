@@ -42,14 +42,16 @@ export default function AddUser({ setNewUser, newUser }) {
     setError('')
 
     try {
+      // Create the new user
       const response = await apiRequest(
         'users',
         'POST',
         {
           name,
           email,
-          password: 'TempPass123!', // Assign a temporary password (should be reset by the user)
+          password: 'TempPass123!', // Assign a temporary password
           password_confirmation: 'TempPass123!',
+          agent_id: selectedAgent, // Include selected agent ID
         },
         authToken
       )
@@ -58,9 +60,20 @@ export default function AddUser({ setNewUser, newUser }) {
         throw new Error(response.message || 'Failed to add user')
       }
 
+      const newUserId = response.data.id
       setUserDetails(response.data)
-      setGeneratedPassword('TempPass123!') // Display temporary password
+      setGeneratedPassword('TempPass123!')
       setSuccess(true)
+
+      // Update the agent to assign the newly created user as a client
+      await apiRequest(
+        `agents/${selectedAgent}`,
+        'PUT',
+        {
+          client_id: newUserId, // Assign the new user ID as client_id
+        },
+        authToken
+      )
 
       setEmail('')
       setName('')

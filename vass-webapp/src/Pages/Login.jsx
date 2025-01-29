@@ -22,7 +22,12 @@ export default function Login() {
       sessionStorage.setItem('auth_token', data.token)
 
       // Navigate to dashboard upon successful login
-      navigate('/dashboard')
+
+      if (data.user.role === 'agency') {
+        navigate('/dashboard')
+      } else {
+        navigate('/client-dashboard')
+      }
     } catch (err) {
       setError(err.message || 'Login failed. Please try again.')
     } finally {

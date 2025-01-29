@@ -20,7 +20,7 @@ export default function UsersDetails() {
       try {
         const response = await apiRequest('clients')
 
-        setUsers(response) // Ensure data is correctly assigned
+        setUsers(response.data) // Ensure data is correctly assigned
       } catch (err) {
         setError('Error fetching users: ' + err.message)
       } finally {
@@ -133,9 +133,7 @@ export default function UsersDetails() {
                 <td className={styles.td}>{user.name}</td>
                 <td className={styles.td}>{user.email}</td>
                 <td className={styles.td}>{user.phone || 'N/A'}</td>
-                <td className={styles.td}>
-                  {user.agents?.join(', ') || 'No Agents'}
-                </td>
+                <td className={styles.td}>{user.agent || 'No Agents'}</td>
                 <td className={styles.td}>
                   <button
                     className={styles.button}

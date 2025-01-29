@@ -15,6 +15,7 @@ class CreateAgentsTable extends Migration
             $table->string('public_key');
             $table->string('agent_id');
             $table->string('name');
+            $table->unsignedBigInteger('client_id')->nullable();
             $table->unsignedBigInteger('admin_id'); // Foreign key to the users table
             $table->string('fee_type')->nullable();
             $table->boolean('custom_fee')->default(false);
@@ -23,6 +24,7 @@ class CreateAgentsTable extends Migration
 
             // Define the foreign key constraint
             $table->foreign('admin_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('client_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

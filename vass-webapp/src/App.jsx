@@ -7,6 +7,7 @@ import Signup from './Pages/Signup'
 import { AuthProvider } from './Auth/AuthContext'
 import ProtectedRoute from './Auth/ProtectedRoute'
 import MainDashboard from './Pages/MainDashboard'
+import ClientDashboard from './Pages/ClientDashboard'
 function App() {
   return (
     <div className="main">
@@ -16,8 +17,11 @@ function App() {
             {/* <Route path="/" element={<Home />} /> */}
             <Route path="/signup" element={<Signup />} />
             <Route path="/login" element={<Login />} />
-
             <Route path="/dashboard" element={<MainDashboard />} />
+            <Route
+              path="/client-dashboard"
+              element={<ClientDashboard />}
+            />{' '}
             <Route path="/" element={<MainDashboard />} />
             {/* Protected Routes */}
             <Route element={<ProtectedRoute />}></Route>

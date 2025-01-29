@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Agent;
 use App\Models\AgencyUser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -51,6 +52,7 @@ class UserController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users,email',
             'password' => ['required', 'string', 'min:6', 'confirmed', Rules\Password::defaults()],
+            'agent_id' => 'required|exists:agents,id', // Ensure the agent exists
         ]);
 
         // Create the client user
@@ -66,6 +68,13 @@ class UserController extends Controller
             'agency_id' => $authUser->id, // Agency user ID
             'user_id' => $client->id, // New client ID
         ]);
+
+        // Find the agent and assign the new user's ID as `client_id`
+        $agent = Agent::find($validated['agent_id']);
+        if ($agent) {
+            $agent->client_id = $client->id;
+            $agent->save();
+        }
 
         return response()->json(['success' => true, 'data' => $client], 201);
     }
@@ -126,12 +135,26 @@ class UserController extends Controller
         // Debugging: Log retrieved client IDs
         Log::info('Retrieved Client IDs:', $clientIds->toArray());
 
-        // Fetch client details from users table
-        $clients = User::whereIn('id', $clientIds)->get();
+        // Fetch clients along with their assigned agent's name
+        $clients = User::whereIn('id', $clientIds)
+            ->with('agent:id,name,client_id') // Fetch only the necessary agent fields
+            ->get()
+            ->map(function ($client) {
+                return [
+                    'id' => $client->id,
+                    'name' => $client->name,
+                    'email' => $client->email,
+                    'email_verified_at' => $client->email_verified_at,
+                    'role' => $client->role,
+                    'created_at' => $client->created_at,
+                    'updated_at' => $client->updated_at,
+                    'agent' => $client->agent ? $client->agent->name : null, // Attach agent name
+                ];
+            });
 
         // Debugging: Log retrieved client data
-        Log::info('Retrieved Clients:', $clients->toArray());
+        Log::info('Retrieved Clients with Agents:', $clients->toArray());
 
-        return response()->json(['succes' => true, 'data' => $clients]);
+        return response()->json(['success' => true, 'data' => $clients]);
     }
 }

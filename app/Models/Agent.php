@@ -19,7 +19,8 @@ class Agent extends Model
         'public_key',
         'agent_id',
         'name',
-        'admin_id', // Foreign key to the User model
+        'admin_id',
+        'client_id',
         'fee_type',
         'custom_fee',
         'fee',
@@ -40,8 +41,8 @@ class Agent extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
-    public function clients()
+    public function client()
     {
-        return $this->belongsToMany(User::class, 'client_agent', 'agent_id', 'client_id');
+        return $this->hasOne(User::class, 'id', 'client_id');
     }
 }

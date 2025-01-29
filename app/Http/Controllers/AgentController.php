@@ -9,23 +9,48 @@ use Illuminate\Support\Facades\Http;
 
 class AgentController extends Controller
 {
-    // Get all agents owned by the logged-in user
     public function index()
     {
-        $agents = Agent::where('admin_id', Auth::id())->get();
-        return response()->json($agents);
+        $user = Auth::user();
+
+        if (!$user) {
+            return response()->json(['error' => 'Unauthorized. Please log in.'], 401);
+        }
+
+        // Check role and fetch agents accordingly
+        if ($user->role === 'agency') {
+            $agents = Agent::where('admin_id', $user->id)->get();
+        } elseif ($user->role === 'client') {
+            $agents = Agent::where('client_id', $user->id)->get();
+        } else {
+            return response()->json(['error' => 'Unauthorized. Invalid role.'], 403);
+        }
+
+        return response()->json(['success' => true, 'data' => $agents]);
     }
 
-    // Get a specific agent by ID (only if the logged-in user is the owner)
     public function show($id)
     {
-        $agent = Agent::where('id', $id)->where('admin_id', Auth::id())->first();
+        $user = Auth::user();
+
+        if (!$user) {
+            return response()->json(['error' => 'Unauthorized. Please log in.'], 401);
+        }
+
+        // Check role and fetch the agent accordingly
+        if ($user->role === 'agency') {
+            $agent = Agent::where('id', $id)->where('admin_id', $user->id)->first();
+        } elseif ($user->role === 'client') {
+            $agent = Agent::where('id', $id)->where('client_id', $user->id)->first();
+        } else {
+            return response()->json(['error' => 'Unauthorized. Invalid role.'], 403);
+        }
 
         if (!$agent) {
             return response()->json(['error' => 'Agent not found or unauthorized access'], 403);
         }
 
-        return response()->json($agent);
+        return response()->json(['success' => true, 'data' => $agent]);
     }
 
     // Create a new agent (auto-assigns logged-in user as admin_id)

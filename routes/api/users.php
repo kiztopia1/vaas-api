@@ -8,7 +8,6 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/user', function (Request $request) {
         return $request->user();
     });
-    Route::get('/clients', [UserController::class, 'getAgencyClients']); // Get all clients under an agency
 
     Route::prefix('/users')->middleware('auth:sanctum')->group(function () {
         // Route::get('/', [UserController::class, 'index']); 
